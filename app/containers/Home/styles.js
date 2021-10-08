@@ -8,7 +8,9 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     marginTop: -10,
   },
-  flatList: {marginTop: 20, flex: 0.1},
+  citiesList: {marginTop: 50, flex: 0.1},
+  stockList: {flex: 1, marginTop: 30},
+  totalContainer: {margin: 80},
 });
 
 export default styles;

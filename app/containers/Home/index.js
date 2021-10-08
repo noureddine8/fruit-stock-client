@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {FlatList, Text, View} from 'react-native';
 import CheckButton from '../../components/CheckButton';
 import Header from '../../components/Header';
-import {data} from '../../utils/constants';
+import {data, stocks} from '../../utils/constants';
+import {reduceMethod} from '../../utils/helpers';
+import StockRow from './components/StockRow';
 import styles from './styles';
 
 function Home() {
@@ -15,15 +17,26 @@ function Home() {
     />
   );
 
+  const renderStocks = ({item}) => (
+    <StockRow title={item.item} quantity={item.quantity} />
+  );
+
+  const totalQuantity = stocks.reduce(reduceMethod, 0);
+
   return (
     <View style={styles.container}>
       <Header />
       <View style={styles.body}>
-        <View style={styles.flatList}>
+        <View style={styles.citiesList}>
           <FlatList data={data} renderItem={renderCities} horizontal />
         </View>
-        <View style={{flex: 1}}>
-          <Text>HAHAH</Text>
+        <View style={styles.stockList}>
+          <FlatList data={stocks} renderItem={renderStocks} />
+          <StockRow
+            containerStyle={styles.totalContainer}
+            title="Total"
+            quantity={totalQuantity}
+          />
         </View>
       </View>
     </View>

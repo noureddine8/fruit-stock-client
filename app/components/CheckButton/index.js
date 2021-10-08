@@ -5,6 +5,7 @@ import styles from './styles';
 function CheckButton({city, selectedCity, onPress}) {
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       style={
         selectedCity === city ? styles.selectedCity : styles.unSelectedCity
       }
