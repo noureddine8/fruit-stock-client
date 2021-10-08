@@ -1,19 +1,24 @@
 import React, {useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import CheckButton from '../../components/CheckButton';
 import Header from '../../components/Header';
-import {data, stocks} from '../../utils/constants';
+import {data, dummyStocks, secondDummyStocks} from '../../utils/constants';
 import {reduceMethod} from '../../utils/helpers';
 import StockRow from './components/StockRow';
 import styles from './styles';
 
 function Home() {
   const [selectedCity, setSelectedCity] = useState(data[0]);
+  const [stocks, setStocks] = useState(dummyStocks);
+
   const renderCities = ({item}) => (
     <CheckButton
       city={item}
       selectedCity={selectedCity}
-      onPress={() => setSelectedCity(item)}
+      onPress={() => {
+        setSelectedCity(item);
+        setStocks(secondDummyStocks);
+      }}
     />
   );
 
