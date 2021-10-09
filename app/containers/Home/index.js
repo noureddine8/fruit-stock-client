@@ -1,23 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect} from 'react';
 import {FlatList, View} from 'react-native';
-import CheckButton from '../../components/CheckButton';
 import Header from '../../components/Header';
-import {data, dummyStocks, secondDummyStocks} from '../../utils/constants';
 import {reduceMethod} from '../../utils/helpers';
 import StockRow from './components/StockRow';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import {getStoreRequest} from './store/actions.creator';
 import styles from './styles';
+import {useDispatch, useSelector} from 'react-redux';
+import CheckButton from '../../components/CheckButton';
+import {data} from '../../utils/constants';
 
 function Home() {
-  const [selectedCity, setSelectedCity] = useState(data[0]);
-  const [stocks, setStocks] = useState(dummyStocks);
-
+  const dispatch = useDispatch();
+  const {loading, store} = useSelector(state => state.storeState);
   const renderCities = ({item}) => (
     <CheckButton
       city={item}
-      selectedCity={selectedCity}
+      selectedCity={store.city}
       onPress={() => {
-        setSelectedCity(item);
-        setStocks(secondDummyStocks);
+        dispatch(getStoreRequest(item));
       }}
     />
   );
@@ -26,21 +27,27 @@ function Home() {
     <StockRow title={item.item} quantity={item.quantity} />
   );
 
-  const totalQuantity = stocks.reduce(reduceMethod, 0);
+  useEffect(() => {
+    dispatch(getStoreRequest('Marseille'));
+  }, [dispatch]);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   return (
     <View style={styles.container}>
-      <Header />
+      <Header title={'Stock par ville'} />
       <View style={styles.body}>
         <View style={styles.citiesList}>
           <FlatList data={data} renderItem={renderCities} horizontal />
         </View>
         <View style={styles.stockList}>
-          <FlatList data={stocks} renderItem={renderStocks} />
+          <FlatList data={store.stocks} renderItem={renderStocks} />
           <StockRow
             containerStyle={styles.totalContainer}
             title="Total"
-            quantity={totalQuantity}
+            quantity={store.stocks?.reduce(reduceMethod, 0)}
           />
         </View>
       </View>
