@@ -1,0 +1,2 @@
+export const HOME_SCREEN = 'HOME_SCREEN';
+export const TRANSFER_ITEM_SCREEN = 'TRANSFER_ITEM_SCREEN';
