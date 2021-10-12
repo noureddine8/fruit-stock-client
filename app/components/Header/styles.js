@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     alignSelf: 'flex-end',
     borderRadius: 10,
-    marginTop: -30,
+    marginTop: -20,
   },
   headerTitle: {fontSize: 26, fontWeight: 'bold', color: 'white'},
   transferTitle: {fontSize: 16, color: 'purple'},
