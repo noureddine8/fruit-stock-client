@@ -8,7 +8,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#1ac748',
     zIndex: -1,
   },
+  transferButtonContainer: {
+    backgroundColor: 'grey',
+    padding: 7,
+    marginHorizontal: 5,
+    alignSelf: 'flex-end',
+    borderRadius: 10,
+    marginTop: -30,
+  },
   headerTitle: {fontSize: 26, fontWeight: 'bold', color: 'white'},
+  transferTitle: {fontSize: 16, color: 'purple'},
 });
 
 export default styles;

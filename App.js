@@ -1,11 +1,11 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import Home from './app/containers/Home';
+import Navigator from './app/utils/navigation';
 
 const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
-      <Home />
+      <Navigator />
     </SafeAreaView>
   );
 };

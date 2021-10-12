@@ -7,7 +7,7 @@ import {HOME_SCREEN, TRANSFER_ITEM_SCREEN} from './screenNames';
 
 const Stack = createNativeStackNavigator();
 
-function App() {
+function Navigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={HOME_SCREEN}>
@@ -18,4 +18,4 @@ function App() {
   );
 }
 
-export default App;
+export default Navigator;

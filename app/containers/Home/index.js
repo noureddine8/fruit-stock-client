@@ -9,8 +9,9 @@ import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import CheckButton from '../../components/CheckButton';
 import {data} from '../../utils/constants';
+import {TRANSFER_ITEM_SCREEN} from '../../utils/navigation/screenNames';
 
-function Home() {
+function Home({navigation}) {
   const dispatch = useDispatch();
   const {loading, store} = useSelector(state => state.storeState);
   const renderCities = ({item}) => (
@@ -27,6 +28,8 @@ function Home() {
     <StockRow title={item.item} quantity={item.quantity} />
   );
 
+  const handleTransferPress = () => navigation.navigate(TRANSFER_ITEM_SCREEN);
+
   useEffect(() => {
     dispatch(getStoreRequest('Marseille'));
   }, [dispatch]);
@@ -37,7 +40,10 @@ function Home() {
 
   return (
     <View style={styles.container}>
-      <Header title={'Stock par ville'} />
+      <Header
+        title={'Stock par ville'}
+        handleTransferPress={handleTransferPress}
+      />
       <View style={styles.body}>
         <View style={styles.citiesList}>
           <FlatList data={data} renderItem={renderCities} horizontal />
