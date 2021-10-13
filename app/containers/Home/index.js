@@ -8,7 +8,7 @@ import {getStoreRequest} from './store/actions.creator';
 import styles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import CheckButton from '../../components/CheckButton';
-import {data} from '../../utils/constants';
+import {cities} from '../../utils/constants';
 import {TRANSFER_ITEM_SCREEN} from '../../utils/navigation/screenNames';
 
 function Home({navigation}) {
@@ -46,7 +46,7 @@ function Home({navigation}) {
       />
       <View style={styles.body}>
         <View style={styles.citiesList}>
-          <FlatList data={data} renderItem={renderCities} horizontal />
+          <FlatList data={cities} renderItem={renderCities} horizontal />
         </View>
         <View style={styles.stockList}>
           <FlatList data={store.stocks} renderItem={renderStocks} />

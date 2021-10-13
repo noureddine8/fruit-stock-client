@@ -12,7 +12,14 @@ function Header({title, handleTransferPress}) {
           <Text style={styles.transferTitle}>Transférer</Text>
         </TouchableHighlight>
       )}
-      <Text style={styles.headerTitle}>{title}</Text>
+      <Text
+        style={
+          handleTransferPress
+            ? styles.headerTitle
+            : styles.transferButtonHeaderTitle
+        }>
+        {title}
+      </Text>
     </View>
   );
 }

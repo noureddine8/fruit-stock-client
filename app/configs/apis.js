@@ -8,3 +8,17 @@ export const getStoreByCity = async city => {
   });
   return data;
 };
+export const transferFruits = async ({
+  senderCity,
+  recieverCity,
+  item,
+  quantity,
+}) => {
+  await axios.put(
+    `${url}/stock/${senderCity}/${recieverCity}/${item}`,
+    {quantity},
+    {
+      headers: {'Content-Type': 'application/json'},
+    },
+  );
+};
