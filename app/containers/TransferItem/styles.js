@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     marginTop: -30,
     padding: 10,
   },
-  citiesList: {marginTop: 20, flex: 0.1},
+  citiesList: {marginTop: 50, flex: 0.1},
   stockList: {flex: 1, marginTop: 30},
   totalContainer: {margin: 80},
 });
