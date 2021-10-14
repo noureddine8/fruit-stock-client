@@ -1,16 +1,9 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Modal,
-  Alert,
-} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
 import Header from '../../components/Header';
 import SelectPicker from './components/SelectPicker';
-import {cities, fruits} from '../../utils/constants';
+import {cities, fruits, TRANSFER_CONFIRMATION} from '../../utils/constants';
 import {transferStockRequest} from './store/actions.creator';
 import {useDispatch, useSelector} from 'react-redux';
 import {formatTransferBody} from '../../utils/helpers';
@@ -18,6 +11,7 @@ import {HOME_SCREEN} from '../../utils/navigation/screenNames';
 import {getStoreRequest} from '../Home/store/actions.creator';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {openModal} from '../Modal/store/actions.creator';
 
 function TransferItem({navigation}) {
   const dispatch = useDispatch();
@@ -43,6 +37,18 @@ function TransferItem({navigation}) {
         formatTransferBody(senderCity, recieverCity, item, quantity),
         transferCallback,
       ),
+    );
+  };
+
+  const handleOpenModal = () => {
+    dispatch(
+      openModal(TRANSFER_CONFIRMATION, {
+        senderCity,
+        recieverCity,
+        item,
+        quantity,
+        handleTransferPress,
+      }),
     );
   };
 
@@ -84,7 +90,7 @@ function TransferItem({navigation}) {
         </View>
         <TouchableOpacity
           style={styles.buttonContainer}
-          onPress={handleTransferPress}>
+          onPress={handleOpenModal}>
           <Text style={styles.buttonText}>Transférer</Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>

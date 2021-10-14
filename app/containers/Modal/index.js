@@ -1,24 +1,25 @@
-import React, {useState} from 'react';
-import {Modal, Text, View} from 'react-native';
-import styles from './styles';
+import React from 'react';
+import {Modal} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {modalsList} from './modalsList';
+import {closeModal} from './store/actions.creator';
 
-function CustomModal({title, content}) {
-  const [modalVisible, setModalVisible] = useState(true);
+function CustomModal() {
+  const {modalKey, isModalOpen, params} = useSelector(
+    state => state.modalState,
+  );
+  const dispatch = useDispatch();
+  const CurrentComponent = modalsList[modalKey];
 
   return (
     <Modal
       animationType="slide"
       transparent={true}
-      visible={modalVisible}
+      visible={isModalOpen}
       onRequestClose={() => {
-        setModalVisible(!modalVisible);
+        dispatch(closeModal());
       }}>
-      <View style={styles.modalContainer}>
-        <View style={styles.modal}>
-          <Text style={styles.modalTitle}>title</Text>
-          <Text>content</Text>
-        </View>
-      </View>
+      <CurrentComponent params={params} />
     </Modal>
   );
 }
