@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Modal,
+  Alert,
+} from 'react-native';
 import styles from './styles';
 import Header from '../../components/Header';
 import SelectPicker from './components/SelectPicker';
